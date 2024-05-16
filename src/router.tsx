@@ -1,10 +1,11 @@
 import { AuthLayout } from "@/features/auth/routes/auth-layout";
 import { LoginRoute } from "@/features/auth/routes/login";
 import { RegisterRoute } from "@/features/auth/routes/register";
-import { CreatePostRoute } from "@/features/posts/routes/create-post";
 import { PostRoute } from "@/features/posts/routes/post";
 import { PostsRoute } from "@/features/posts/routes/posts";
+import { ProfileRoute } from "@/features/users/routes/profile";
 import { UserRoute } from "@/features/users/routes/user";
+import { EditUserRoute } from "@/features/users/routes/user-edit";
 import { Layout } from "@/routes/layout";
 import { Protected } from "@/routes/protected";
 import { Public } from "@/routes/public";
@@ -40,8 +41,8 @@ export const router = createBrowserRouter([
             element: <UserRoute />
           },
           {
-            path: "/posts/create",
-            element: <CreatePostRoute />
+            path: "/users/:userId/edit",
+            element: <EditUserRoute />
           },
           {
             path: "/posts/:postId",
@@ -50,6 +51,10 @@ export const router = createBrowserRouter([
           {
             path: "/",
             element: <PostsRoute />
+          },
+          {
+            path: "/profile",
+            element: <ProfileRoute />
           },
         ]
       }

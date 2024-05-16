@@ -1,5 +1,5 @@
 import { SidebarMenu } from "@/components/sidebar-menu"
-import { Button, buttonVariants } from "@/components/ui/button"
+import { buttonVariants } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { Link, NavLink } from "react-router-dom"
 
@@ -10,11 +10,7 @@ const navLinks = [
   },
   {
     title: "プロフィール",
-    to: "/users/2"
-  },
-  {
-    title: "新規投稿",
-    to: "/posts/create"
+    to: "/profile"
   }
 ]
 

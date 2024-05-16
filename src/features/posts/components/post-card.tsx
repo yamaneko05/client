@@ -4,6 +4,7 @@ import { useUnlike } from "@/features/likes/hooks/use-unlike"
 import { PostMenu } from "@/features/posts/components/post-menu"
 import { useDeletePost } from "@/features/posts/hooks/use-delete-post"
 import { PostType } from "@/features/posts/types"
+import { Icon } from "@/features/users/components/icon"
 import { Heart, MessageSquare } from "lucide-react"
 import { Link } from "react-router-dom"
 
@@ -27,7 +28,13 @@ export const PostCard = ({post, invalidate}: {
   }, post.id)
 
   return (
-    <div className="pl-[50px]">
+    <div className="flex gap-2">
+      <div className="">
+        <Link to={`/users/${post.user.id}`}>
+          <Icon className="w-10 h-10" icon_file={post.user.icon_file} />
+        </Link>
+      </div>
+      <div className="flex-grow">
         <div className="flex justify-between items-center">
           <div className="font-medium">
             <Link to={`/users/${post.user.id}`}>{post.user.name}</Link>
@@ -46,21 +53,21 @@ export const PostCard = ({post, invalidate}: {
             </a>
           </div>
         )}
-
-      <div className="flex gap-16 pt-2">
-        <div className="flex items-center gap-2">
-          <Link to={`/posts/${post.id}`}>
-            <MessageSquare size={18} />
-          </Link>
-          <div className="">{post.children_count}</div>
-        </div>
-        <div className="flex items-center gap-2">
-          {post.like ? (
-            <Heart size={18} className="hover:cursor-pointer" color="red" fill="red" onClick={() => unlike(post.like!.id)} />
-          ) : (
-            <Heart size={18} className="hover:cursor-pointer" onClick={() => like()} />
-          )}
-          <div className="">{post.likes_count}</div>
+        <div className="flex gap-16 pt-2">
+          <div className="flex items-center gap-2">
+            <Link to={`/posts/${post.id}`}>
+              <MessageSquare size={18} />
+            </Link>
+            <div className="">{post.children_count}</div>
+          </div>
+          <div className="flex items-center gap-2">
+            {post.like ? (
+              <Heart size={18} className="hover:cursor-pointer" color="red" fill="red" onClick={() => unlike(post.like!.id)} />
+            ) : (
+              <Heart size={18} className="hover:cursor-pointer" onClick={() => like()} />
+            )}
+            <div className="">{post.likes_count}</div>
+          </div>
         </div>
       </div>
     </div>

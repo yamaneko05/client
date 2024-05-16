@@ -3,5 +3,6 @@ export type UserType = {
   name: string,
   email: string,
   bio: string,
-  posts_count: number
+  posts_count: number,
+  icon_file: string
 }
