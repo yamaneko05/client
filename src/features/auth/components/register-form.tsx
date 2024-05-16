@@ -27,13 +27,13 @@ export const RegisterForm = ({onSuccess}: {
         />
         <FormField control={form.control} name="password" render={({ field }) => (
             <FieldWrapper label="パスワード">
-              <Input {...field} />
+              <Input type="password" {...field} />
             </FieldWrapper>
           )}
         />
         <FormField control={form.control} name="password_confirmation" render={({ field }) => (
             <FieldWrapper label="パスワード（再入力）">
-              <Input {...field} />
+              <Input type="password" {...field} />
             </FieldWrapper>
           )}
         />

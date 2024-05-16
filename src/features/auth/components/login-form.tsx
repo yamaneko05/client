@@ -21,7 +21,7 @@ export const LoginForm = ({onSuccess}: {
         />
         <FormField control={form.control} name="password" render={({ field }) => (
             <FieldWrapper label="パスワード">
-              <Input {...field} />
+              <Input type="password" {...field} />
             </FieldWrapper>
           )}
         />
