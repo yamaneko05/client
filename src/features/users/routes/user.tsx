@@ -24,6 +24,7 @@ export const UserRoute = () => {
         <div className="text-xl font-bold">{data.user.name}</div>
         <div className="">email: {data.user.email}</div>
         <div className="">投稿: {data.user.posts_count}件</div>
+        <div className="">{data.user.bio}</div>
       </div>
       <PostsList posts={data.posts} />
     </div>
