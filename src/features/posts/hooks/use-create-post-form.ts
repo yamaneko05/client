@@ -21,7 +21,7 @@ const requestConfig = {
 export const useCreatePostForm = (onSuccess: () => void, parentId?: string) => {
   const form = useForm<Inputs>({
     defaultValues: {
-      text: "", image_file: undefined, parent_id: Number(parentId)
+      text: "", image_file: undefined, parent_id: parentId ? Number(parentId) : undefined
     },
     resolver: zodResolver(formSchema)
   });

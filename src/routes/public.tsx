@@ -1,14 +1,8 @@
-import { UserType } from "@/features/users/types"
-import { api } from "@/lib/api"
-import { useQuery } from "@tanstack/react-query"
+import { useUser } from "@/features/auth/hooks/use-user"
 import { Navigate, Outlet } from "react-router-dom"
 
 export const Public = () => {
-  const { isSuccess, isError } = useQuery({
-    queryKey: ["user"],
-    queryFn: () => api.get<UserType>(`/user`).then(res => res.data),
-    retry: false
-  })
+  const { isSuccess } = useUser()
 
-  return isSuccess ? <Navigate to="/posts/create" /> : isError ? <Outlet /> : "loading"
+  return isSuccess ? <Navigate to="/posts/create" /> : <Outlet />
 }

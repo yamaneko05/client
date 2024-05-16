@@ -5,10 +5,8 @@ import { Input } from "@/components/ui/input"
 import { useLoginForm } from "@/features/auth/hooks/use-login-form"
 import { Link } from "react-router-dom"
 
-export const LoginForm = ({onSuccess}: {
-  onSuccess: () => void
-}) => {
-  const { form, onSubmit } = useLoginForm(onSuccess);
+export const LoginForm = () => {
+  const { form, onSubmit } = useLoginForm();
 
   return (
     <Form {...form}>

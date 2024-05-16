@@ -1,7 +1,9 @@
+import { toast } from "@/components/ui/use-toast"
 import { api } from "@/lib/api"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useMutation } from "@tanstack/react-query"
 import { SubmitHandler, useForm } from "react-hook-form"
+import { useNavigate } from "react-router-dom"
 import { z } from "zod"
 
 const formSchema = z.object({
@@ -11,7 +13,9 @@ const formSchema = z.object({
 
 type Inputs = z.infer<typeof formSchema>
 
-export const useLoginForm = (onSuccess: () => void) => {
+export const useLoginForm = () => {
+  const navigate = useNavigate()
+
   const form = useForm<Inputs>({
     defaultValues: {
       email: "", password: ""
@@ -24,7 +28,10 @@ export const useLoginForm = (onSuccess: () => void) => {
       await api.get('../sanctum/csrf-cookie')
       return api.post("../login", data)
     },
-    onSuccess: onSuccess
+    onSuccess: () => {
+      toast({description: "ログインしました"})
+      navigate("/")
+    }
   })
   
   const onSubmit: SubmitHandler<Inputs> = (data) => {

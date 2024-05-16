@@ -12,13 +12,15 @@ export const PostsRoute = () => {
     queryFn: () => api.get<PostType[]>(`/posts`).then(res => res.data)
   })
 
+  const invalidate = () => queryClient.invalidateQueries({queryKey: ["posts"]})
+
   return (
     <div className="space-y-8">
       <CreatePostForm onSuccess={() => {
         toast({description: "投稿しました"})
-        queryClient.invalidateQueries({queryKey: ["posts"]})
+        invalidate()
       }} />
-      {posts ? <PostsList posts={posts} /> : "loading"}
+      {posts ? <PostsList posts={posts} invalidate={invalidate} /> : "loading"}
     </div>
   )
 }

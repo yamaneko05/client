@@ -21,14 +21,16 @@ export const PostRoute = () => {
     queryFn: () => api.get<DataType>(`/posts/${postId}`).then(res => res.data)
   })
 
+  const invalidate = () => queryClient.invalidateQueries({queryKey: ["post", postId]});
+
   return data ? (
     <div className="space-y-6">
-      <PostCard post={data.post} />
+      <PostCard post={data.post} invalidate={invalidate} />
       <CreatePostForm onSuccess={() => {
         toast({description: "返信を投稿しました"})
-        queryClient.invalidateQueries({queryKey: ["post"]})
+        queryClient.invalidateQueries({queryKey: ["post", postId]})
       }} parentId={data.post.id} />
-      <PostsList posts={data.children} />
+      <PostsList posts={data.children} invalidate={invalidate} />
     </div>
   ) : "loading"
 }

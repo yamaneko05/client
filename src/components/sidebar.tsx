@@ -1,8 +1,7 @@
+import { SidebarMenu } from "@/components/sidebar-menu"
 import { Button, buttonVariants } from "@/components/ui/button"
-import { toast } from "@/components/ui/use-toast"
-import { useLogout } from "@/features/auth/hooks/use-logout"
 import { cn } from "@/lib/utils"
-import { Link, NavLink, useNavigate } from "react-router-dom"
+import { Link, NavLink } from "react-router-dom"
 
 const navLinks = [
   {
@@ -20,12 +19,6 @@ const navLinks = [
 ]
 
 export const Sidebar = () => {
-  const navigate = useNavigate();
-  const { mutate: logout } = useLogout(() => {
-    toast({description: "ログアウトしました"})
-    navigate("/login")
-  })
-
   return (
     <div className="fixed top-0 h-screen w-[280px] border-r px-2 py-4 flex flex-col justify-between">
       <div className="">
@@ -44,9 +37,7 @@ export const Sidebar = () => {
         </div>
       </div>
       <div>
-        <Button onClick={() => logout()} variant="outline" className="w-full">
-          ログアウト
-        </Button>
+        <SidebarMenu />
       </div>
     </div>
   )

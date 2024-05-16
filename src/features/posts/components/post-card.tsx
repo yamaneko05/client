@@ -1,30 +1,29 @@
-import { Button } from "@/components/ui/button"
 import { toast } from "@/components/ui/use-toast"
 import { useLike } from "@/features/likes/hooks/use-like"
 import { useUnlike } from "@/features/likes/hooks/use-unlike"
 import { PostMenu } from "@/features/posts/components/post-menu"
 import { useDeletePost } from "@/features/posts/hooks/use-delete-post"
 import { PostType } from "@/features/posts/types"
-import { queryClient } from "@/lib/queryClient"
 import { Heart, MessageSquare } from "lucide-react"
 import { Link } from "react-router-dom"
 
-export const PostCard = ({post}: {
-  post: PostType
+export const PostCard = ({post, invalidate}: {
+  post: PostType,
+  invalidate: () => Promise<void>
 }) => {
   const { mutate: like } = useLike(() => {
     toast({description: "いいねしました"})
-    queryClient.invalidateQueries({queryKey: ["posts"]})
+    invalidate()
   }, post.id)
 
   const { mutate: unlike } = useUnlike(() => {
     toast({description: "いいねを解除しました"})
-    queryClient.invalidateQueries({queryKey: ["posts"]})
+    invalidate()
   })
 
   const { mutate: deleteFn } = useDeletePost(() => {
     toast({description: "投稿を削除しました"})
-    queryClient.invalidateQueries({queryKey: ["posts"]})
+    invalidate()
   }, post.id)
 
   return (
