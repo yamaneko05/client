@@ -5,7 +5,7 @@ import { PostRoute } from "@/features/posts/routes/post";
 import { PostsRoute } from "@/features/posts/routes/posts";
 import { ProfileRoute } from "@/features/users/routes/profile";
 import { UserRoute } from "@/features/users/routes/user";
-import { EditUserRoute } from "@/features/users/routes/user-edit";
+import { EditUserRoute } from "@/features/users/routes/edit-user";
 import { Layout } from "@/routes/layout";
 import { Protected } from "@/routes/protected";
 import { Public } from "@/routes/public";

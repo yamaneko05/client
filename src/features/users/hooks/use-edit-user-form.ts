@@ -36,7 +36,6 @@ export const useEditUserForm = (user: UserType) => {
     onSuccess: () => {
       queryClient.invalidateQueries({queryKey: ["user", user.id]})
       toast({description: "保存しました"})
-      form.reset()
     }
   })
   
