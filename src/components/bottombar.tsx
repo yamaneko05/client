@@ -1,5 +1,4 @@
 import { SidebarMenu } from "@/components/sidebar-menu"
-import { Button } from "@/components/ui/button"
 import { Icon } from "@/features/users/components/icon"
 import { UserType } from "@/features/users/types"
 import { NavLink } from "react-router-dom"
