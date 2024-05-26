@@ -1,4 +1,3 @@
-import { LikeType } from "@/features/likes/types"
 import { UserType } from "@/features/users/types"
 
 export type PostType = {
@@ -6,9 +5,15 @@ export type PostType = {
   text: string,
   user: UserType,
   children_count: number,
-  likes_count: number,
+  likers_count: number,
   like?: LikeType,
   image_file?: string,
   parent?: PostType,
   children?: PostType[]
+}
+
+export type LikeType = {
+  id: string,
+  user_id: string,
+  post_id: string
 }

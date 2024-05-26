@@ -4,5 +4,15 @@ export type UserType = {
   email: string,
   bio: string,
   posts_count: number,
-  icon_file: string
+  followings_count: number,
+  followers_count: number,
+  icon_file: string,
+  following?: boolean
+  followed?: boolean
+}
+
+export type FollowType = {
+  id: string,
+  follower_id: string,
+  followee_id: string
 }

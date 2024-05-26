@@ -10,6 +10,7 @@ import { Layout } from "@/routes/layout";
 import { Protected } from "@/routes/protected";
 import { Public } from "@/routes/public";
 import { createBrowserRouter } from "react-router-dom";
+import { FollowersFollowingsRoute } from "@/features/users/routes/followers-followings";
 
 export const router = createBrowserRouter([
   {
@@ -38,11 +39,24 @@ export const router = createBrowserRouter([
         children: [
           {
             path: "/users/:userId",
-            element: <UserRoute />
-          },
-          {
-            path: "/users/:userId/edit",
-            element: <EditUserRoute />
+            children: [
+              {
+                path: "",
+                element: <UserRoute />,
+              },
+              {
+                path: "edit",
+                element: <EditUserRoute />
+              },
+              {
+                path: "followers",
+                element: <FollowersFollowingsRoute />
+              },
+              {
+                path: "followings",
+                element: <FollowersFollowingsRoute />
+              }
+            ]
           },
           {
             path: "/posts/:postId",

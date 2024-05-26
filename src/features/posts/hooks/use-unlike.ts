@@ -3,7 +3,10 @@ import { useMutation } from "@tanstack/react-query"
 
 export const useUnlike = (onSuccess: () => void) => {
   const mutation = useMutation({
-    mutationFn: (likeId: string) => api.delete(`/likes/${likeId}`),
+    mutationFn: ({postId, userId}: {
+      postId: string,
+      userId: string
+    }) => api.post(`/users/${userId}/unlike`, {post_id: postId}),
     onSuccess: onSuccess
   })
   

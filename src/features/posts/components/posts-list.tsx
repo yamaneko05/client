@@ -3,12 +3,16 @@ import { PostType } from "@/features/posts/types"
 
 export const PostsList = ({posts, invalidate}: {
   posts: PostType[],
-  invalidate: () => Promise<void>
+  invalidate: () => Promise<void>,
 }) => {
   return (
     <div className="space-y-6">
       {posts.map(post => (
-        <PostCard post={post} key={post.id} invalidate={invalidate} />
+        <PostCard
+          post={post}
+          key={post.id}
+          invalidate={invalidate}
+        />
       ))}
     </div>
   )

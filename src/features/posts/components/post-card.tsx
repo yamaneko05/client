@@ -1,8 +1,10 @@
 import { toast } from "@/components/ui/use-toast"
-import { useLike } from "@/features/likes/hooks/use-like"
-import { useUnlike } from "@/features/likes/hooks/use-unlike"
+import { STORAGE_URL } from "@/constants"
+import { useUser } from "@/features/auth/hooks/use-user"
 import { PostMenu } from "@/features/posts/components/post-menu"
 import { useDeletePost } from "@/features/posts/hooks/use-delete-post"
+import { useLike } from "@/features/posts/hooks/use-like"
+import { useUnlike } from "@/features/posts/hooks/use-unlike"
 import { PostType } from "@/features/posts/types"
 import { Icon } from "@/features/users/components/icon"
 import { Heart, MessageSquare } from "lucide-react"
@@ -12,10 +14,12 @@ export const PostCard = ({post, invalidate}: {
   post: PostType,
   invalidate: () => Promise<void>
 }) => {
+  const { data: loginUser } = useUser();
+
   const { mutate: like } = useLike(() => {
     toast({description: "いいねしました"})
     invalidate()
-  }, post.id)
+  })
 
   const { mutate: unlike } = useUnlike(() => {
     toast({description: "いいねを解除しました"})
@@ -27,7 +31,7 @@ export const PostCard = ({post, invalidate}: {
     invalidate()
   }, post.id)
 
-  return (
+  return loginUser && (
     <div className="flex gap-2">
       <div className="">
         <Link to={`/users/${post.user.id}`}>
@@ -48,8 +52,8 @@ export const PostCard = ({post, invalidate}: {
         </Link>
         {post.image_file && (
           <div className="pt-2">
-            <a href={"http://localhost:8000/storage/"+post.image_file} target="_blank" rel="noopener noreferrer">
-              <img src={"http://localhost:8000/storage/"+post.image_file} alt="" />
+            <a href={STORAGE_URL+post.image_file} target="_blank" rel="noopener noreferrer">
+              <img src={STORAGE_URL+post.image_file} alt="" />
             </a>
           </div>
         )}
@@ -62,11 +66,21 @@ export const PostCard = ({post, invalidate}: {
           </div>
           <div className="flex items-center gap-2">
             {post.like ? (
-              <Heart size={18} className="hover:cursor-pointer" color="red" fill="red" onClick={() => unlike(post.like!.id)} />
+              <Heart
+                size={18}
+                className="hover:cursor-pointer"
+                color="red"
+                fill="red"
+                onClick={() => unlike({postId: post.id, userId: loginUser.id})}
+              />
             ) : (
-              <Heart size={18} className="hover:cursor-pointer" onClick={() => like()} />
+              <Heart
+                size={18}
+                className="hover:cursor-pointer"
+                onClick={() => like({postId: post.id, userId: loginUser.id})}
+              />
             )}
-            <div className="">{post.likes_count}</div>
+            <div className="">{post.likers_count}</div>
           </div>
         </div>
       </div>
