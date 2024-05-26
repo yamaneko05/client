@@ -33,7 +33,7 @@ export const PostCard = ({post, invalidate}: {
 
   return loginUser && (
     <div className="flex gap-2">
-      <div className="">
+      <div className="flex-shrink-0">
         <Link to={`/users/${post.user.id}`}>
           <Icon className="w-10 h-10" icon_file={post.user.icon_file} />
         </Link>
