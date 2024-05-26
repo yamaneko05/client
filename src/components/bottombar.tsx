@@ -1,30 +1,36 @@
 import { SidebarMenu } from "@/components/sidebar-menu"
-import { Button, buttonVariants } from "@/components/ui/button"
+import { Button } from "@/components/ui/button"
 import { Icon } from "@/features/users/components/icon"
 import { UserType } from "@/features/users/types"
-import { cn } from "@/lib/utils"
-import { navLinkType } from "@/routes/layout"
 import { NavLink } from "react-router-dom"
+import { Home, User } from "lucide-react"
 
-export const Bottombar = ({loginUser, navLinks}: {
+export const Bottombar = ({loginUser}: {
   loginUser: UserType,
-  navLinks: navLinkType[]
 }) => {
+  const navLinks = [
+    {
+      to: "/",
+      icon: <Home size={24} />
+    },
+    {
+      to: `/users/${loginUser?.id}`,
+      icon: <User size={24} />
+    }
+  ]
+
   return (
-    <div className="fixed bottom-0 w-full p-2 bg-white border-t">
-      <div className="flex justify-around">
-        {navLinks.map((navLink, index) => (
-          <NavLink to={navLink.to} key={index} className={({isActive}) => buttonVariants({
-            variant: "link",
-            className: cn(["!justify-normal w-full text-xl", isActive ? "font-bold underline" : "font-normal"])
-          })}>
-            {navLink.icon}
-          </NavLink>
-        ))}
+    <div className="fixed bottom-0 w-full px-2 h-[60px] bg-white border-t flex justify-around items-center">
+      {navLinks.map((navLink, index) => (
+        <NavLink to={navLink.to} key={index} className="p-3">
+          {navLink.icon}
+        </NavLink>
+      ))}
+      <div className="shrink-0">
         <SidebarMenu>
-          <Button variant="ghost">
-            <Icon icon_file={loginUser.icon_file} className="w-6 h-6" />
-          </Button>
+          <div className="p-2">
+            <Icon icon_file={loginUser.icon_file} className="w-8 h-8" />
+          </div>
         </SidebarMenu>
       </div>
     </div>

@@ -3,15 +3,27 @@ import { Button, buttonVariants } from "@/components/ui/button"
 import { Icon } from "@/features/users/components/icon"
 import { UserType } from "@/features/users/types"
 import { cn } from "@/lib/utils"
-import { navLinkType } from "@/routes/layout"
 import { Link, NavLink } from "react-router-dom"
+import { Home, User } from "lucide-react"
 
-export const Sidebar = ({loginUser, navLinks}: {
+export const Sidebar = ({loginUser}: {
   loginUser: UserType,
-  navLinks: navLinkType[]
 }) => {
+  const navLinks = [
+    {
+      title: "ホーム",
+      to: "/",
+      icon: <Home />
+    },
+    {
+      title: "プロフィール",
+      to: `/users/${loginUser?.id}`,
+      icon: <User />
+    }
+  ]
+
   return (
-    <div className="fixed top-0 h-screen w-[280px] border-r px-2 py-4 flex flex-col justify-between">
+    <div className="fixed top-0 h-screen w-[280px] border-r px-2 py-8 flex flex-col justify-between">
       <div className="">
         <div className="text-3xl font-semibold mb-8">
           <Link to="/">Biography5</Link>
@@ -22,20 +34,18 @@ export const Sidebar = ({loginUser, navLinks}: {
               variant: "link",
               className: cn(["!justify-normal w-full text-xl", isActive ? "font-bold underline" : "font-normal"])
             })}>
-              {navLink.icon}
+              <span className="me-2">{navLink.icon}</span>
               {navLink.title}
             </NavLink>
           ))}
         </div>
       </div>
-      <div>
-        <SidebarMenu>
-          <Button variant="ghost" className="w-full h-14 gap-4 justify-normal">
-            <Icon icon_file={loginUser.icon_file} className="w-10 h-10" />
-            {loginUser.name}
-          </Button>
-        </SidebarMenu>
-      </div>
+      <SidebarMenu>
+        <Button variant="ghost" className="w-full h-14 gap-4 justify-normal">
+          <Icon icon_file={loginUser.icon_file} className="w-10 h-10" />
+          {loginUser.name}
+        </Button>
+      </SidebarMenu>
     </div>
   )
 }
