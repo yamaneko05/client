@@ -23,7 +23,7 @@ export const UserProfile = ({user, invalidate}: {
   })
 
   return loginUser && (
-    <div className="">
+    <div className="space-y-2">
       <div className="flex items-center justify-between">
         <div className="">
           <div className="text-xl font-bold">{user.name}</div>
@@ -52,7 +52,8 @@ export const UserProfile = ({user, invalidate}: {
           )}
         </div>
       </div>
-      <div className="flex gap-4 pt-2 pb-1">
+      <div className="text-sm">{user.bio}</div>
+      <div className="flex gap-4">
         <div className="">投稿: {user.posts_count}件</div>
         <div className="">
         <Link to={`/users/${user.id}/followings`}>フォロー中: {user.followings_count}人</Link>
@@ -61,7 +62,6 @@ export const UserProfile = ({user, invalidate}: {
           <Link to={`/users/${user.id}/followers`}>フォロワー: {user.followers_count}人</Link>
         </div>
       </div>
-      <div className="">{user.bio}</div>
     </div>
   )
 }
