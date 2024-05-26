@@ -1,20 +1,23 @@
 import { SidebarMenu } from "@/components/sidebar-menu"
 import { buttonVariants } from "@/components/ui/button"
+import { useUser } from "@/features/auth/hooks/use-user"
 import { cn } from "@/lib/utils"
 import { Link, NavLink } from "react-router-dom"
 
-const navLinks = [
-  {
-    title: "ホーム",
-    to: "/"
-  },
-  {
-    title: "プロフィール",
-    to: "/profile"
-  }
-]
-
 export const Sidebar = () => {
+  const { data: loginUser } = useUser();
+
+  const navLinks = [
+    {
+      title: "ホーム",
+      to: "/"
+    },
+    {
+      title: "プロフィール",
+      to: `/users/${loginUser?.id}`
+    }
+  ]
+
   return (
     <div className="fixed top-0 h-screen w-[280px] border-r px-2 py-4 flex flex-col justify-between">
       <div className="">

@@ -3,7 +3,6 @@ import { LoginRoute } from "@/features/auth/routes/login";
 import { RegisterRoute } from "@/features/auth/routes/register";
 import { PostRoute } from "@/features/posts/routes/post";
 import { PostsRoute } from "@/features/posts/routes/posts";
-import { ProfileRoute } from "@/features/users/routes/profile";
 import { UserRoute } from "@/features/users/routes/user";
 import { EditUserRoute } from "@/features/users/routes/edit-user";
 import { Layout } from "@/routes/layout";
@@ -65,11 +64,7 @@ export const router = createBrowserRouter([
           {
             path: "/",
             element: <PostsRoute />
-          },
-          {
-            path: "/profile",
-            element: <ProfileRoute />
-          },
+          }
         ]
       }
     ]
