@@ -1,14 +1,14 @@
 import { SidebarMenu } from "@/components/sidebar-menu"
 import { Button, buttonVariants } from "@/components/ui/button"
 import { Icon } from "@/features/users/components/icon"
-import { UserType } from "@/features/users/types"
 import { cn } from "@/lib/utils"
 import { Link, NavLink } from "react-router-dom"
 import { Home, User } from "lucide-react"
+import { useUser } from "@/features/auth/hooks/use-user"
 
-export const Sidebar = ({loginUser}: {
-  loginUser: UserType,
-}) => {
+export const Sidebar = () => {
+  const { data: loginUser } = useUser();
+
   const navLinks = [
     {
       title: "ホーム",
@@ -22,8 +22,8 @@ export const Sidebar = ({loginUser}: {
     }
   ]
 
-  return (
-    <div className="fixed top-0 h-screen w-[280px] border-r px-2 py-8 flex flex-col justify-between">
+  return loginUser && (
+    <div className="hidden sm:flex fixed top-0 h-screen w-[280px] border-r px-2 py-8 flex-col justify-between">
       <div className="">
         <div className="text-3xl font-semibold mb-8">
           <Link to="/">Biography5</Link>

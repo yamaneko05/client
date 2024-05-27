@@ -1,12 +1,12 @@
 import { SidebarMenu } from "@/components/sidebar-menu"
 import { Icon } from "@/features/users/components/icon"
-import { UserType } from "@/features/users/types"
 import { NavLink } from "react-router-dom"
 import { Home, User } from "lucide-react"
+import { useUser } from "@/features/auth/hooks/use-user"
 
-export const Bottombar = ({loginUser}: {
-  loginUser: UserType,
-}) => {
+export const Bottombar = () => {
+  const { data: loginUser } = useUser();
+
   const navLinks = [
     {
       to: "/",
@@ -18,8 +18,8 @@ export const Bottombar = ({loginUser}: {
     }
   ]
 
-  return (
-    <div className="fixed bottom-0 w-full px-2 h-[60px] bg-white border-t flex justify-around items-center">
+  return loginUser && (
+    <div className="flex sm:hidden fixed bottom-0 w-full px-2 h-[60px] bg-white border-t justify-around items-center">
       {navLinks.map((navLink, index) => (
         <NavLink to={navLink.to} key={index} className="p-3">
           {navLink.icon}
