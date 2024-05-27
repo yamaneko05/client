@@ -3,7 +3,7 @@ import { Button, buttonVariants } from "@/components/ui/button"
 import { Icon } from "@/features/users/components/icon"
 import { cn } from "@/lib/utils"
 import { Link, NavLink } from "react-router-dom"
-import { Home, User } from "lucide-react"
+import { Bell, BellDot, Home, User } from "lucide-react"
 import { useUser } from "@/features/auth/hooks/use-user"
 
 export const Sidebar = () => {
@@ -19,7 +19,14 @@ export const Sidebar = () => {
       title: "プロフィール",
       to: `/users/${loginUser?.id}`,
       icon: <User />
-    }
+    },
+    {
+      title: loginUser?.unread_notifications_count
+        ? `通知[${loginUser?.unread_notifications_count}]`
+        : "通知",
+      to: `/users/${loginUser?.id}/notifications`,
+      icon: loginUser?.unread_notifications_count ? <BellDot /> : <Bell />
+    },
   ]
 
   return loginUser && (

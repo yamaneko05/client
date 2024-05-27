@@ -10,6 +10,7 @@ import { Protected } from "@/routes/protected";
 import { Public } from "@/routes/public";
 import { createBrowserRouter } from "react-router-dom";
 import { FollowersFollowingsRoute } from "@/features/users/routes/followers-followings";
+import { NotificationsRoute } from "@/features/notifications/routes/notifications";
 
 export const router = createBrowserRouter([
   {
@@ -54,6 +55,10 @@ export const router = createBrowserRouter([
               {
                 path: "followings",
                 element: <FollowersFollowingsRoute />
+              },
+              {
+                path: "notifications",
+                element: <NotificationsRoute />
               }
             ]
           },
@@ -64,7 +69,7 @@ export const router = createBrowserRouter([
           {
             path: "/",
             element: <PostsRoute />
-          }
+          },
         ]
       }
     ]

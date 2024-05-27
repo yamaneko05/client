@@ -8,7 +8,8 @@ export type UserType = {
   followers_count: number,
   icon_file: string,
   following?: boolean
-  followed?: boolean
+  followed?: boolean,
+  unread_notifications_count: number
 }
 
 export type FollowType = {
