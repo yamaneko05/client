@@ -13,7 +13,7 @@ export const EditUserForm = ({user}: {
 }) => {
   const { form, onSubmit } = useEditUserForm(user);
 
-  const { preview, handleImageChange } = useImagePreview(STORAGE_URL+user.icon_file);
+  const { preview, handleImageChange } = useImagePreview(user.icon_file);
 
   return (
     <Form {...form}>

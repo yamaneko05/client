@@ -1,7 +1,6 @@
 import { FileInputButton } from "@/components/file-input-button"
 import { ImagePreview } from "@/components/image-preview"
 import { Button } from "@/components/ui/button"
-import { FieldWrapper } from "@/components/ui/field-wrapper"
 import { Form, FormField } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -10,7 +9,6 @@ import { useUser } from "@/features/auth/hooks/use-user"
 import { useCreatePostForm } from "@/features/posts/hooks/use-create-post-form"
 import { Icon } from "@/features/users/components/icon"
 import { useImagePreview } from "@/hooks/useImagePreview"
-import { X } from "lucide-react"
 import { useRef } from "react"
 import { Link } from "react-router-dom"
 
@@ -33,7 +31,7 @@ export const CreatePostForm = ({onSuccess, parentId}: {
     <div className="flex gap-2">
       <div className="shrink-0">
         <Link to={`/users/${loginUser.id}`}>
-          <Icon className="w-10 h-10" icon_file={STORAGE_URL+loginUser.icon_file} />
+          <Icon className="w-10 h-10" icon_file={loginUser.icon_file} />
         </Link>
       </div>
       <div className="">

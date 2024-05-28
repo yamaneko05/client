@@ -36,7 +36,7 @@ export const Bottombar = () => {
       <div className="shrink-0">
         <SidebarMenu>
           <div className="p-2">
-            <Icon icon_file={STORAGE_URL+loginUser.icon_file} className="w-8 h-8" />
+            <Icon icon_file={loginUser.icon_file} className="w-8 h-8" />
           </div>
         </SidebarMenu>
       </div>

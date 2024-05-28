@@ -50,7 +50,7 @@ export const Sidebar = () => {
       </div>
       <SidebarMenu>
         <Button variant="ghost" className="w-full h-14 gap-4 justify-normal">
-          <Icon icon_file={STORAGE_URL+loginUser.icon_file} className="w-10 h-10" />
+          <Icon icon_file={loginUser.icon_file} className="w-10 h-10" />
           {loginUser.name}
         </Button>
       </SidebarMenu>
