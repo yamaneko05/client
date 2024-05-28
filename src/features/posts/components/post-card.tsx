@@ -1,5 +1,4 @@
 import { toast } from "@/components/ui/use-toast"
-import { STORAGE_URL } from "@/constants"
 import { useUser } from "@/features/auth/hooks/use-user"
 import { PostMenu } from "@/features/posts/components/post-menu"
 import { useDeletePost } from "@/features/posts/hooks/use-delete-post"

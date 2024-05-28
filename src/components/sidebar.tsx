@@ -3,9 +3,8 @@ import { Button, buttonVariants } from "@/components/ui/button"
 import { Icon } from "@/features/users/components/icon"
 import { cn } from "@/lib/utils"
 import { Link, NavLink } from "react-router-dom"
-import { Bell, BellDot, Home, User } from "lucide-react"
+import { Bell, Home, User } from "lucide-react"
 import { useUser } from "@/features/auth/hooks/use-user"
-import { STORAGE_URL } from "@/constants"
 
 export const Sidebar = () => {
   const { data: loginUser } = useUser();
@@ -19,14 +18,25 @@ export const Sidebar = () => {
     {
       title: "プロフィール",
       to: `/users/${loginUser?.id}`,
-      icon: <User />
+      icon: <User />,
+      end: true
     },
     {
       title: loginUser?.unread_notifications_count
         ? `通知[${loginUser?.unread_notifications_count}]`
         : "通知",
       to: `/users/${loginUser?.id}/notifications`,
-      icon: loginUser?.unread_notifications_count ? <BellDot /> : <Bell />
+      icon: (
+        <div className="relative">
+          <Bell />
+          {!!loginUser?.unread_notifications_count && (
+            <span className="absolute top-0 right-0 flex h-3 w-3">
+              <span className="absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-3 w-3 bg-sky-500"></span>
+            </span>
+          )}
+        </div>
+      )
     },
   ]
 
@@ -38,7 +48,7 @@ export const Sidebar = () => {
         </div>
         <div className="space-y-4">
           {navLinks.map((navLink, index) => (
-            <NavLink to={navLink.to} key={index} className={({isActive}) => buttonVariants({
+            <NavLink end={navLink.end} to={navLink.to} key={index} className={({isActive}) => buttonVariants({
               variant: "link",
               className: cn(["!justify-normal w-full text-xl", isActive ? "font-bold underline" : "font-normal"])
             })}>

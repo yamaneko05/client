@@ -1,4 +1,3 @@
-import { STORAGE_URL } from "@/constants"
 import { Icon } from "@/features/users/components/icon"
 import { UserType } from "@/features/users/types"
 import { Link } from "react-router-dom"

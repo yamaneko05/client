@@ -1,5 +1,4 @@
 import { Badge } from "@/components/ui/badge"
-import { STORAGE_URL } from "@/constants"
 import { NotificationType } from "@/features/notifications/types"
 import { Icon } from "@/features/users/components/icon"
 import { Link } from "react-router-dom"

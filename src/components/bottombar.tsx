@@ -1,9 +1,6 @@
-import { SidebarMenu } from "@/components/sidebar-menu"
-import { Icon } from "@/features/users/components/icon"
 import { NavLink } from "react-router-dom"
-import { Bell, BellDot, Home, User } from "lucide-react"
+import { Bell, Home, User } from "lucide-react"
 import { useUser } from "@/features/auth/hooks/use-user"
-import { STORAGE_URL } from "@/constants"
 
 export const Bottombar = () => {
   const { data: loginUser } = useUser();
@@ -15,14 +12,24 @@ export const Bottombar = () => {
     },
     {
       to: `/users/${loginUser?.id}`,
-      icon: <User size={24} />
+      icon: <User size={24} />,
     },
     {
       title: loginUser?.unread_notifications_count
         ? `通知[${loginUser?.unread_notifications_count}]`
         : "通知",
       to: `/users/${loginUser?.id}/notifications`,
-      icon: loginUser?.unread_notifications_count ? <BellDot size={24} /> : <Bell size={24} />
+      icon: (
+        <div className="relative">
+          <Bell size={24} />
+          {!!loginUser?.unread_notifications_count && (
+            <span className="absolute top-0 right-0 flex h-3 w-3">
+              <span className="absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-3 w-3 bg-sky-500"></span>
+            </span>
+          )}
+        </div>
+      )
     },
   ]
 
@@ -33,13 +40,6 @@ export const Bottombar = () => {
           {navLink.icon}
         </NavLink>
       ))}
-      <div className="shrink-0">
-        <SidebarMenu>
-          <div className="p-2">
-            <Icon icon_file={loginUser.icon_file} className="w-8 h-8" />
-          </div>
-        </SidebarMenu>
-      </div>
     </div>
   )
 }
