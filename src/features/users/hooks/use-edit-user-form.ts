@@ -34,7 +34,7 @@ export const useEditUserForm = (user: UserType) => {
   const mutation = useMutation({
     mutationFn: async (data: Inputs) => api.post(`/users/${user.id}`, data, requestConfig),
     onSuccess: () => {
-      queryClient.invalidateQueries({queryKey: ["user", user.id]})
+      queryClient.invalidateQueries({queryKey: ["loginUser"]})
       toast({description: "保存しました"})
     }
   })

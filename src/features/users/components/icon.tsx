@@ -1,4 +1,3 @@
-import { STORAGE_URL } from "@/constants"
 import clsx from "clsx"
 import { User2 } from "lucide-react"
 
@@ -9,7 +8,7 @@ export const Icon = ({icon_file, className}: {
   return icon_file ? (
     <img
       className={clsx(["rounded-full", className])}
-      src={STORAGE_URL+icon_file} alt=""
+      src={icon_file} alt=""
     />
   ) : (
     <div className={clsx(["rounded-full bg-slate-400 grid place-items-center", className])}>

@@ -35,7 +35,7 @@ export const PostCard = ({post, invalidate}: {
     <div className="flex gap-2">
       <div className="flex-shrink-0">
         <Link to={`/users/${post.user.id}`}>
-          <Icon className="w-10 h-10" icon_file={post.user.icon_file} />
+          <Icon className="w-10 h-10" icon_file={STORAGE_URL+post.user.icon_file} />
         </Link>
       </div>
       <div className="flex-grow">
@@ -53,7 +53,7 @@ export const PostCard = ({post, invalidate}: {
         {post.image_file && (
           <div className="pt-2">
             <a href={STORAGE_URL+post.image_file} target="_blank" rel="noopener noreferrer">
-              <img src={STORAGE_URL+post.image_file} alt="" />
+              <img src={STORAGE_URL+post.image_file} className="max-h-80" alt="" />
             </a>
           </div>
         )}

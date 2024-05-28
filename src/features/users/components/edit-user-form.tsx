@@ -2,14 +2,18 @@ import { Button } from "@/components/ui/button"
 import { FieldWrapper } from "@/components/ui/field-wrapper"
 import { Form, FormField } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
+import { STORAGE_URL } from "@/constants"
 import { Icon } from "@/features/users/components/icon"
 import { useEditUserForm } from "@/features/users/hooks/use-edit-user-form"
 import { UserType } from "@/features/users/types"
+import { useImagePreview } from "@/hooks/useImagePreview"
 
 export const EditUserForm = ({user}: {
   user: UserType
 }) => {
   const { form, onSubmit } = useEditUserForm(user);
+
+  const { preview, handleImageChange } = useImagePreview(STORAGE_URL+user.icon_file);
 
   return (
     <Form {...form}>
@@ -21,7 +25,7 @@ export const EditUserForm = ({user}: {
           )}
         />
         <FormField control={form.control} name="bio" render={({ field }) => (
-            <FieldWrapper label="bio">
+            <FieldWrapper label="プロフィール文">
               <Input {...field} />
             </FieldWrapper>
           )}
@@ -29,8 +33,11 @@ export const EditUserForm = ({user}: {
         <FormField control={form.control} name="icon_file" render={({ field: {onChange} }) => (
             <FieldWrapper label="アイコン">
               <>
-                <Icon className="w-16 h-16" icon_file={user.icon_file} />
-                <Input type="file" accept="image/*" onChange={(e) => onChange(e.target.files)} />
+                <Icon className="w-16 h-16" icon_file={preview} />
+                <Input type="file" accept="image/*" onChange={(e) => {
+                  onChange(e.target.files)
+                  handleImageChange(e)
+                }} />
               </>
             </FieldWrapper>
           )}

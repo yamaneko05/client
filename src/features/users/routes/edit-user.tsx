@@ -1,3 +1,4 @@
+import { useUser } from "@/features/auth/hooks/use-user"
 import { PostType } from "@/features/posts/types"
 import { EditUserForm } from "@/features/users/components/edit-user-form"
 import { UserType } from "@/features/users/types"
@@ -11,14 +12,11 @@ type DataType = {
 }
 
 export const EditUserRoute = () => {
-  const { userId } = useParams();
+  // const { userId } = useParams();
   
-  const { data } = useQuery({
-    queryKey: ["user", userId],
-    queryFn: () => api.get<DataType>(`/users/${userId}`).then(res => res.data)
-  })
+  const { data: loginUser } = useUser();
 
-  return data ? (
-    <EditUserForm user={data.user} />
+  return loginUser ? (
+    <EditUserForm user={loginUser} />
   ) : "loading"
 }

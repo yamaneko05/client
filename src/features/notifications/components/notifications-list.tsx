@@ -1,4 +1,5 @@
 import { Badge } from "@/components/ui/badge"
+import { STORAGE_URL } from "@/constants"
 import { NotificationType } from "@/features/notifications/types"
 import { Icon } from "@/features/users/components/icon"
 import { Link } from "react-router-dom"
@@ -32,7 +33,7 @@ const Notification = ({notification}: {
     return (
       <Link to={`/users/${notification.notifiable_id}/followers`}>
         <Link to={`/users/${notification.data.follower_id}`}>
-          <Icon className="w-10 h-10 mb-2" icon_file={notification.data.follower_icon_file} />
+          <Icon className="w-10 h-10 mb-2" icon_file={STORAGE_URL+notification.data.follower_icon_file} />
         </Link>
         <div className="font-medium">
           <b>{notification.data.follower_name}</b>が<b>あなた</b>をフォローしました
@@ -43,7 +44,7 @@ const Notification = ({notification}: {
     return (
       <Link to={`/posts/${notification.data.post_id}`}>
         <Link to={`/users/${notification.data.user_id}`}>
-          <Icon className="w-10 h-10 mb-2" icon_file={notification.data.user_icon_file} />
+          <Icon className="w-10 h-10 mb-2" icon_file={STORAGE_URL+notification.data.user_icon_file} />
         </Link>
         <div className="font-medium">
           <b>{notification.data.user_name}</b>があなたの投稿をいいねしました

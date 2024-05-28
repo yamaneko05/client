@@ -31,6 +31,7 @@ export const useCreatePostForm = (onSuccess: () => void, parentId?: string) => {
     onSuccess: () => {
       onSuccess();
       form.reset();
+      form.resetField("image_file");
     }
   })
   

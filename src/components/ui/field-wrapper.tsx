@@ -2,7 +2,7 @@ import { FormItem, FormLabel, FormControl, FormDescription, FormMessage } from "
 
 export const FieldWrapper = ({children, label, description}: {
   children: React.ReactNode,
-  label: string,
+  label?: string,
   description?: string
 }) => {
   return (
