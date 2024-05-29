@@ -5,6 +5,8 @@ import { toast } from "@/components/ui/use-toast"
 import { useFollow } from "@/features/users/hooks/use-follow"
 import { useUnfollow } from "@/features/users/hooks/use-unfollow"
 import { useUser } from "@/features/auth/hooks/use-user"
+import { useCreateRoom } from "@/features/messages/hooks/use-create-room"
+import { MessageSquare } from "lucide-react"
 
 export const UserProfile = ({user, invalidate}: {
   user: UserType,
@@ -20,6 +22,10 @@ export const UserProfile = ({user, invalidate}: {
   const { mutate: unfollow } = useUnfollow(() => {
     toast({description: "フォロー解除しました"})
     invalidate()
+  })
+
+  const { mutate: createRoom } = useCreateRoom(() => {
+    toast({description: "チャットルームを作成しました"})
   })
 
   return loginUser && (
@@ -52,6 +58,25 @@ export const UserProfile = ({user, invalidate}: {
           )}
         </div>
       </div>
+      {user.id !== loginUser.id && (
+        <div className="">
+          {user.room ? (
+            <Button size="sm" asChild>
+              <Link to={`/rooms/${user.room.id}`}>
+                <MessageSquare className="mr-1" />
+                チャット
+              </Link>
+            </Button>
+          ) : (
+            <Button size="sm" onClick={() => {
+              createRoom({userId: loginUser.id, users: [user.id]})
+            }}>
+              <MessageSquare className="mr-1" />
+              チャットを作成
+            </Button>
+          )}
+        </div>
+      )}
       <div className="text-sm">{user.bio}</div>
       <div className="flex gap-4">
         <div className="">投稿: {user.posts_count}件</div>

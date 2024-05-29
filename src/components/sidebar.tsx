@@ -3,7 +3,7 @@ import { Button, buttonVariants } from "@/components/ui/button"
 import { Icon } from "@/features/users/components/icon"
 import { cn } from "@/lib/utils"
 import { Link, NavLink } from "react-router-dom"
-import { Bell, Home, User } from "lucide-react"
+import { Bell, Home, MessageSquare, User } from "lucide-react"
 import { useUser } from "@/features/auth/hooks/use-user"
 
 export const Sidebar = () => {
@@ -37,6 +37,11 @@ export const Sidebar = () => {
           )}
         </div>
       )
+    },
+    {
+      title: "メッセージ",
+      to: `/users/${loginUser?.id}/messages`,
+      icon: <MessageSquare />
     },
   ]
 

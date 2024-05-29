@@ -11,6 +11,8 @@ import { Public } from "@/routes/public";
 import { createBrowserRouter } from "react-router-dom";
 import { FollowersFollowingsRoute } from "@/features/users/routes/followers-followings";
 import { NotificationsRoute } from "@/features/notifications/routes/notifications";
+import { MessagesRoute } from "@/features/messages/routes/messages";
+import { RoomRoute } from "@/features/messages/routes/room";
 
 export const router = createBrowserRouter([
   {
@@ -59,8 +61,16 @@ export const router = createBrowserRouter([
               {
                 path: "notifications",
                 element: <NotificationsRoute />
-              }
+              },
+              {
+                path: "messages",
+                element: <MessagesRoute />
+              },
             ]
+          },
+          {
+            path: "/rooms/:roomId",
+            element: <RoomRoute />
           },
           {
             path: "/posts/:postId",

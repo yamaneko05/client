@@ -9,7 +9,7 @@ export const Layout = () => {
       <Sidebar />
       <Header />
       <Bottombar />
-      <div className="px-4 py-[calc(60px+0.5rem)] sm:py-2 sm:ml-[280px] sm:w-[600px]">
+      <div className="relative min-h-screen px-4 py-[calc(60px+0.5rem)] sm:py-2 sm:ml-[280px] sm:w-[600px]">
         <Outlet />
       </div>
     </div>

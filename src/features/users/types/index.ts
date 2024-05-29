@@ -1,3 +1,5 @@
+import { RoomType } from "@/features/messages/types"
+
 export type UserType = {
   id: string,
   name: string,
@@ -9,6 +11,7 @@ export type UserType = {
   icon_file: string,
   following?: boolean
   followed?: boolean,
+  room?: RoomType,
   unread_notifications_count: number
 }
 

@@ -31,6 +31,9 @@ export const useLoginForm = () => {
     onSuccess: () => {
       toast({description: "ログインしました"})
       navigate("/")
+    },
+    onError: () => {
+      toast({variant: "destructive", description: "ログインできませんでした"})
     }
   })
   
