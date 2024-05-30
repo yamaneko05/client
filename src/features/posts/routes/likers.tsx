@@ -14,7 +14,7 @@ export const LikersRoute = () => {
   })
 
   return likers ? (
-    <div className="">
+    <div className="p-4">
       <PageHeading>いいねした人</PageHeading>
       <UsersList users={likers} />
     </div>

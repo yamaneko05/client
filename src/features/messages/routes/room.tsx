@@ -1,9 +1,11 @@
 import { PageHeading } from "@/components/ui/page-heading"
+import { toast } from "@/components/ui/use-toast"
 import { useUser } from "@/features/auth/hooks/use-user"
 import { CreateMessageForm } from "@/features/messages/components/create-message-form"
 import { MessagesList } from "@/features/messages/components/messages-list"
-import { RoomType } from "@/features/messages/types"
+import { MessageType, RoomType } from "@/features/messages/types"
 import { api } from "@/lib/api"
+import { echo, pusher } from "@/lib/echo"
 import { queryClient } from "@/lib/queryClient"
 import { useQueries } from "@tanstack/react-query"
 import { useEffect, useRef } from "react"
@@ -32,21 +34,29 @@ export const RoomRoute = () => {
     ]
   })
 
+  const invalidate = () => queryClient.invalidateQueries({queryKey: ["messages", roomId]})
+
   useEffect(() => {
     scrollBottomRef.current?.scrollIntoView()
   }, [messages])
 
   useEffect(() => {
     scrollBottomRef.current?.scrollIntoView()
+
+    echo.private(`rooms.${roomId}`)
+    .listen('NewMessage', (e: {message: MessageType}) => {
+      if (e.message.user.id != loginUser?.id) {
+        toast({description: "新着メッセージがあります"})
+        invalidate()
+      }
+    });
   }, [])
 
   return room && loginUser && roomId && messages ? (
-    <div className="relative">
+    <div className="p-4 relative">
       <PageHeading>メッセージ: {room.users.filter(user => user.id !== loginUser.id).map(user => user.name)}</PageHeading>
       <MessagesList messages={messages} scrollBottomRef={scrollBottomRef} />
-      <CreateMessageForm onSuccess={async () => {
-        queryClient.invalidateQueries({queryKey: ["messages", roomId]})
-      }} roomId={roomId} />
+      <CreateMessageForm onSuccess={invalidate} roomId={roomId} />
     </div>
   ) : <>loading...</>
 }

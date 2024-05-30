@@ -19,7 +19,7 @@ export const PostMenu = ({post, invalidate}: {
   return loginUser && (
     <DropdownMenu>
       <DropdownMenuTrigger>
-        <Ellipsis size={24} />
+        <Ellipsis className="w-4 h-4 sm:w-6 sm:h-6" />
       </DropdownMenuTrigger>
       <DropdownMenuContent>
         <DropdownMenuLabel>メニュー</DropdownMenuLabel>

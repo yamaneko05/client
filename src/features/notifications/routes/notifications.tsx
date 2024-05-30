@@ -18,7 +18,7 @@ export const NotificationsRoute = () => {
   })
 
   return notifications ? (
-    <div className="">
+    <div className="p-4">
       <PageHeading>通知</PageHeading>
       <NotificationsList notifications={notifications} />
     </div>

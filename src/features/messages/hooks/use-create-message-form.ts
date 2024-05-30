@@ -28,7 +28,6 @@ export const useCreateMessageForm = (onSuccess: () => void, roomId: string) => {
   })
 
   const onSubmit: SubmitHandler<FromDataType> = (formData) => {
-    console.log(formData)
     mutation.mutate({formData, roomId})
   }
 

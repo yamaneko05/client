@@ -6,7 +6,7 @@ export const PostsList = ({posts, invalidate}: {
   invalidate: () => Promise<void>,
 }) => {
   return (
-    <div className="space-y-6">
+    <div className="p-4 space-y-6">
       {posts.map(post => (
         <PostCard
           post={post}

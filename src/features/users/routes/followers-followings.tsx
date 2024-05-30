@@ -18,7 +18,7 @@ export const FollowersFollowingsRoute = () => {
   }
 
   return userId && (
-    <div className="">
+    <div className="p-4">
       <Tabs onValueChange={tabOnValueChange} defaultValue={tabDefaultValue}>
         <TabsList className="flex">
           <TabsTrigger value="followers">フォロワー</TabsTrigger>

@@ -16,7 +16,7 @@ export const EditUserForm = ({user}: {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="p-4 space-y-4">
         <FormField control={form.control} name="name" render={({ field }) => (
             <FieldWrapper label="ユーザー名">
               <Input {...field} />

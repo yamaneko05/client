@@ -14,7 +14,7 @@ export const MessagesRoute = () => {
   })
 
   return rooms && (
-    <div className="">
+    <div className="p-4">
       <PageHeading>メッセージ</PageHeading>
       <RoomsList rooms={rooms} />
     </div>

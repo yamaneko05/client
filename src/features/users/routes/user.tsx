@@ -23,7 +23,7 @@ export const UserRoute = () => {
   const invalidate = () => queryClient.invalidateQueries({queryKey: ["user", userId]})
 
   return data ? (
-    <div className="space-y-6">
+    <div className="">
       <UserProfile user={data.user} invalidate={invalidate} />
       <PostsList posts={data.posts} invalidate={invalidate} />
     </div>

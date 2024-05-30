@@ -29,7 +29,7 @@ export const UserProfile = ({user, invalidate}: {
   })
 
   return loginUser && (
-    <div className="space-y-2">
+    <div className="p-4 space-y-2">
       <div className="flex items-center justify-between">
         <div className="">
           <div className="text-xl font-bold">{user.name}</div>

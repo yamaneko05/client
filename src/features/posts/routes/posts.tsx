@@ -18,7 +18,7 @@ export const PostsRoute = () => {
   const invalidate = () => queryClient.invalidateQueries({queryKey: ["posts"]})
 
   return (
-    <div className="space-y-8">
+    <div className="">
       <CreatePostForm onSuccess={() => {
         toast({description: "投稿しました"})
         invalidate()

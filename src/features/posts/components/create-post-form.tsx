@@ -27,7 +27,7 @@ export const CreatePostForm = ({onSuccess, parentId}: {
   const fileInputRef = useRef<HTMLInputElement|null>()
   
   return loginUser && (
-    <div className="flex gap-2">
+    <div className="p-4 flex gap-2">
       <div className="shrink-0">
         <Link to={`/users/${loginUser.id}`}>
           <Icon className="w-10 h-10" icon_file={loginUser.icon_file} />
