@@ -9,7 +9,8 @@ export type PostType = {
   like?: LikeType,
   image_file?: string,
   parent?: PostType,
-  children?: PostType[]
+  children?: PostType[],
+  created_at: string
 }
 
 export type LikeType = {

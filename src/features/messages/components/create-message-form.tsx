@@ -9,9 +9,9 @@ export const CreateMessageForm = ({roomId}: {
   const { form, onSubmit } = useCreateMessageForm(roomId)
 
   return (
-    <div className="fixed bottom-0 left-0 right-0">
+    <div className="fixed bottom-[calc(60px)] sm:bottom-0 left-0 right-0 sm:ml-[280px]">
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2 p-2">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2 p-2 bg-white border-t">
           <FormField control={form.control} name="text" render={({ field }) => (
             <Textarea cols={32} rows={1} {...field} className="" placeholder="テキスト" />
           )} />

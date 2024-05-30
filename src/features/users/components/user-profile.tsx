@@ -81,10 +81,10 @@ export const UserProfile = ({user, invalidate}: {
       <div className="flex gap-4">
         <div className="">投稿: {user.posts_count}件</div>
         <div className="">
-        <Link to={`/users/${user.id}/followings`}>フォロー中: {user.followings_count}人</Link>
+          <Link to={`/users/${user.id}/followers`}>フォロワー: {user.followers_count}人</Link>
         </div>
         <div className="">
-          <Link to={`/users/${user.id}/followers`}>フォロワー: {user.followers_count}人</Link>
+          <Link to={`/users/${user.id}/followings`}>フォロー中: {user.followings_count}人</Link>
         </div>
       </div>
     </div>

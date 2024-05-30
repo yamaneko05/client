@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button"
+import { Checkbox } from "@/components/ui/checkbox"
 import { FieldWrapper } from "@/components/ui/field-wrapper"
 import { Form, FormField } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
@@ -20,6 +21,20 @@ export const LoginForm = () => {
         <FormField control={form.control} name="password" render={({ field }) => (
             <FieldWrapper label="パスワード">
               <Input type="password" {...field} />
+            </FieldWrapper>
+          )}
+        />
+        <FormField control={form.control} name="remember" render={({ field }) => (
+            <FieldWrapper>
+              <div className="flex items-center space-x-2">
+                <Checkbox id="terms" {...field} checked />
+                <label
+                  htmlFor="terms"
+                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                >
+                  Remember me
+                </label>
+              </div>
             </FieldWrapper>
           )}
         />

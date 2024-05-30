@@ -3,7 +3,8 @@ import { UserType } from "@/features/users/types"
 export type RoomType = {
   id: string,
   created_at: string,
-  users: UserType[]
+  users: UserType[],
+  unread_messages_count: number
 }
 
 export type MessageType = {

@@ -10,7 +10,7 @@ export const MessagesList = ({messages}: {
   const { data: loginUser } = useUser()
 
   return loginUser && (
-    <div className="space-y-2">
+    <div className="space-y-2 pb-[140px]">
       {messages.map(message => (
         <div className={cn(
           ["flex gap-2"],

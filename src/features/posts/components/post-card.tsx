@@ -1,7 +1,6 @@
 import { toast } from "@/components/ui/use-toast"
 import { useUser } from "@/features/auth/hooks/use-user"
 import { PostMenu } from "@/features/posts/components/post-menu"
-import { useDeletePost } from "@/features/posts/hooks/use-delete-post"
 import { useLike } from "@/features/posts/hooks/use-like"
 import { useUnlike } from "@/features/posts/hooks/use-unlike"
 import { PostType } from "@/features/posts/types"
@@ -25,11 +24,6 @@ export const PostCard = ({post, invalidate}: {
     invalidate()
   })
 
-  const { mutate: deleteFn } = useDeletePost(() => {
-    toast({description: "投稿を削除しました"})
-    invalidate()
-  }, post.id)
-
   return loginUser && (
     <div className="flex gap-2">
       <div className="flex-shrink-0">
@@ -42,11 +36,14 @@ export const PostCard = ({post, invalidate}: {
           <div className="font-medium">
             <Link to={`/users/${post.user.id}`}>{post.user.name}</Link>
           </div>
-          <PostMenu handleDeleteClick={() => deleteFn()} />
+          <PostMenu post={post} invalidate={invalidate} />
         </div>
         <Link to={`/posts/${post.id}`}>
           <div className="text-lg pt-1">
             {post.text}
+          </div>
+          <div className="text-end text-sm">
+            {post.created_at}
           </div>
         </Link>
         {post.image_file && (
@@ -79,7 +76,11 @@ export const PostCard = ({post, invalidate}: {
                 onClick={() => like({postId: post.id, userId: loginUser.id})}
               />
             )}
-            <div className="">{post.likers_count}</div>
+            <div className="">
+              <Link to={`/posts/${post.id}/likers`}>
+                {post.likers_count}
+              </Link>
+            </div>
           </div>
         </div>
       </div>

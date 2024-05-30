@@ -13,6 +13,7 @@ import { FollowersFollowingsRoute } from "@/features/users/routes/followers-foll
 import { NotificationsRoute } from "@/features/notifications/routes/notifications";
 import { MessagesRoute } from "@/features/messages/routes/messages";
 import { RoomRoute } from "@/features/messages/routes/room";
+import { LikersRoute } from "@/features/posts/routes/likers";
 
 export const router = createBrowserRouter([
   {
@@ -74,7 +75,16 @@ export const router = createBrowserRouter([
           },
           {
             path: "/posts/:postId",
-            element: <PostRoute />
+            children: [
+              {
+                path: "",
+                element: <PostRoute />,
+              },
+              {
+                path: "likers",
+                element: <LikersRoute />
+              },
+            ]
           },
           {
             path: "/",

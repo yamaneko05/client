@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom"
-import { Bell, Home, User } from "lucide-react"
+import { Bell, Home, MessageSquare, User } from "lucide-react"
 import { useUser } from "@/features/auth/hooks/use-user"
 
 export const Bottombar = () => {
@@ -15,9 +15,6 @@ export const Bottombar = () => {
       icon: <User size={24} />,
     },
     {
-      title: loginUser?.unread_notifications_count
-        ? `通知[${loginUser?.unread_notifications_count}]`
-        : "通知",
       to: `/users/${loginUser?.id}/notifications`,
       icon: (
         <div className="relative">
@@ -30,6 +27,10 @@ export const Bottombar = () => {
           )}
         </div>
       )
+    },
+    {
+      to: `/users/${loginUser?.id}/messages`,
+      icon: <MessageSquare />
     },
   ]
 

@@ -9,6 +9,7 @@ import { z } from "zod"
 const formSchema = z.object({
   email: z.string().email(),
   password: z.string().min(1),
+  remember: z.string()
 })
 
 type Inputs = z.infer<typeof formSchema>
@@ -18,7 +19,7 @@ export const useLoginForm = () => {
 
   const form = useForm<Inputs>({
     defaultValues: {
-      email: "", password: ""
+      email: "", password: "", remember: "1"
     },
     resolver: zodResolver(formSchema)
   });
