@@ -8,13 +8,11 @@ import { useParams } from "react-router-dom";
 
 export const NotificationsRoute = () => {
   const { userId } = useParams();
-
-  const invalidate = () => queryClient.invalidateQueries({queryKey: ["loginUser"]})
   
   const { data: notifications } = useQuery({
     queryKey: ["notifications", userId],
     queryFn: () => api.get<NotificationType[]>(`/users/${userId}/notifications`).then(res => {
-      invalidate()
+      queryClient.invalidateQueries({queryKey: ["loginUser"]})
       return res.data
     })
   })

@@ -11,5 +11,6 @@ export type MessageType = {
   id: string,
   text: string,
   created_at: string,
-  user: UserType
+  user: UserType,
+  read_at: string
 }

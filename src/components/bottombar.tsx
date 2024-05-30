@@ -30,7 +30,17 @@ export const Bottombar = () => {
     },
     {
       to: `/users/${loginUser?.id}/messages`,
-      icon: <MessageSquare />
+      icon: (
+        <div className="relative">
+          <MessageSquare size={24} />
+          {!!loginUser?.unread_messages_count && (
+            <span className="absolute top-0 right-0 flex h-3 w-3">
+              <span className="absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-3 w-3 bg-sky-500"></span>
+            </span>
+          )}
+        </div>
+      )
     },
   ]
 

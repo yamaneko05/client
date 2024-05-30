@@ -12,7 +12,8 @@ export type UserType = {
   following?: boolean
   followed?: boolean,
   room?: RoomType,
-  unread_notifications_count: number
+  unread_notifications_count?: number,
+  unread_messages_count?: number
 }
 
 export type FollowType = {
