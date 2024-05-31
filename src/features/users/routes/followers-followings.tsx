@@ -18,12 +18,14 @@ export const FollowersFollowingsRoute = () => {
   }
 
   return userId && (
-    <div className="p-4">
+    <div className="">
       <Tabs onValueChange={tabOnValueChange} defaultValue={tabDefaultValue}>
-        <TabsList className="flex">
-          <TabsTrigger value="followers">フォロワー</TabsTrigger>
-          <TabsTrigger value="followings">フォロー中</TabsTrigger>
-        </TabsList>
+        <div className="p-4">
+          <TabsList className="flex">
+            <TabsTrigger value="followers">フォロワー</TabsTrigger>
+            <TabsTrigger value="followings">フォロー中</TabsTrigger>
+          </TabsList>
+        </div>
         <TabsContent value="followers"><Followers userId={userId} /></TabsContent>
         <TabsContent value="followings"><Followings userId={userId} /></TabsContent>
       </Tabs>

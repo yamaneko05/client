@@ -5,7 +5,7 @@ import { CreateMessageForm } from "@/features/messages/components/create-message
 import { MessagesList } from "@/features/messages/components/messages-list"
 import { MessageType, RoomType } from "@/features/messages/types"
 import { api } from "@/lib/api"
-import { echo, pusher } from "@/lib/echo"
+import { echo } from "@/lib/echo"
 import { queryClient } from "@/lib/queryClient"
 import { useQueries } from "@tanstack/react-query"
 import { useEffect, useRef } from "react"

@@ -24,8 +24,10 @@ export const PostRoute = () => {
   const invalidate = () => queryClient.invalidateQueries({queryKey: ["post", postId]});
 
   return data ? (
-    <div className="space-y-6">
-      <PostCard post={data.post} invalidate={invalidate} />
+    <div className="">
+      <div className="p-4">
+        <PostCard post={data.post} invalidate={invalidate} />
+      </div>
       <CreatePostForm onSuccess={() => {
         toast({description: "返信を投稿しました"})
         queryClient.invalidateQueries({queryKey: ["post", postId]})

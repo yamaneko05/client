@@ -26,6 +26,7 @@ export const UserProfile = ({user, invalidate}: {
 
   const { mutate: createRoom } = useCreateRoom(() => {
     toast({description: "チャットルームを作成しました"})
+    invalidate()
   })
 
   return loginUser && (

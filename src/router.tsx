@@ -14,6 +14,7 @@ import { NotificationsRoute } from "@/features/notifications/routes/notification
 import { MessagesRoute } from "@/features/messages/routes/messages";
 import { RoomRoute } from "@/features/messages/routes/room";
 import { LikersRoute } from "@/features/posts/routes/likers";
+import { SearchRoute } from "@/features/search/routes/search";
 
 export const router = createBrowserRouter([
   {
@@ -68,6 +69,14 @@ export const router = createBrowserRouter([
                 element: <MessagesRoute />
               },
             ]
+          },
+          {
+            path: "/search/posts",
+            element: <SearchRoute />
+          },
+          {
+            path: "/search/users",
+            element: <SearchRoute />
           },
           {
             path: "/rooms/:roomId",

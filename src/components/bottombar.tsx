@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom"
-import { Bell, Home, MessageSquare, User } from "lucide-react"
+import { Bell, Home, MessageSquare, Search, User } from "lucide-react"
 import { useUser } from "@/features/auth/hooks/use-user"
 
 export const Bottombar = () => {
@@ -41,6 +41,10 @@ export const Bottombar = () => {
           )}
         </div>
       )
+    },
+    {
+      to: `/search/posts`,
+      icon: <Search />
     },
   ]
 

@@ -6,7 +6,7 @@ export const UsersList = ({users}: {
   users: UserType[]
 }) => {
   return (
-    <div className="space-y-4">
+    <div className="p-4 space-y-4">
       {users.map(user => (
         <Link to={`/users/${user.id}`} className="block" key={user.id}>
           <div className="flex gap-2 items-center">
